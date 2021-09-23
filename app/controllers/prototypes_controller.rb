@@ -28,6 +28,7 @@ class PrototypesController < ApplicationController
     # .includes(:user)
     # # redirect_to prototype_comments_path(@prototype) ,method: :post
     # @user = User.current_id
+    
   end
 
   def edit
@@ -37,7 +38,7 @@ class PrototypesController < ApplicationController
   def update
     @prototype= Prototype.find(params[:id])
     if @prototype.update(prototype_params)
-      redirect_to :show
+      redirect_to user_path(current_user.id)
     else
       render :edit
     end
