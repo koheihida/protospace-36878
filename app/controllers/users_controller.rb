@@ -2,16 +2,17 @@ class UsersController < ApplicationController
   
   def show
     
-    user = User.find(params[:id])
+    @user = User.find(params[:id])
     # @prototype = Prototype.find(params[:id])
     # @name = current_user.name
-    @user_name = user.name
-    @profile = user.profile
-    @occupation = user.occupation
-    @position = user.position
+    # @user_name = user.name
+    # @profile = user.profile
+    # @occupation = user.occupation
+    # @position = user.position
     # @prototype = Prototype.find(params[:id])
     # @prototypes = @Prototype.title
     @prototypes = Prototype.includes(:user).order("created_at DESC")
+    # @user = User.all
   end
   
   private
