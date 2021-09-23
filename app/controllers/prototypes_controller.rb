@@ -4,6 +4,8 @@ class PrototypesController < ApplicationController
 
   def index
     @prototypes = Prototype.includes(:user).order("created_at DESC")
+    @prototype = Prototype.new
+    # @user_id = Prototype.user_id
   end
 
   def new
@@ -25,7 +27,7 @@ class PrototypesController < ApplicationController
     @comments = @prototype.comments
     # .includes(:user)
     # # redirect_to prototype_comments_path(@prototype) ,method: :post
-    
+    # @user = User.current_id
   end
 
   def edit
@@ -35,7 +37,7 @@ class PrototypesController < ApplicationController
   def update
     @prototype= Prototype.find(params[:id])
     if @prototype.update(prototype_params)
-      redirect_to root_path
+      redirect_to :show
     else
       render :edit
     end
